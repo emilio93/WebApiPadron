@@ -15,9 +15,8 @@ namespace WebApiPadron
         /// <summary>
         /// Constructs the CitizenLogic object.
         /// </summary>
-        public CitizenLogic(ICitizen[] citizens)
+        public CitizenLogic()
         {
-            Citizens = citizens;
         }
 
         /// <summary>

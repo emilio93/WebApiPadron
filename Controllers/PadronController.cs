@@ -12,18 +12,17 @@ namespace WebApiPadron.Controllers
     public class PadronController : ControllerBase
     {
         private readonly ILogger<PadronController> _logger;
-        private readonly IPadronReader _padronReader;
         private readonly ICitizenLogic _citizenLogic;
 
         /// <summary>   
         /// El constructor obtiene la lista de ciudadanos y crea un objeto para
         /// el manejo de la lógica de estos datos.
         /// </summary>
-        public PadronController(ILogger<PadronController> logger)
+        public PadronController(ILogger<PadronController> logger, IPadronReader padronFileReader, ICitizenLogic citizenLogic)
         {
-            _padronReader = PadronFileReader.GetIntance();
             _logger = logger;
-            _citizenLogic = new CitizenLogic(_padronReader.getCitizens());
+            _citizenLogic = citizenLogic;
+            _citizenLogic.Citizens = padronFileReader.getCitizens();
         }
 
         /// <summary>

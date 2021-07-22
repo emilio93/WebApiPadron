@@ -18,6 +18,10 @@ namespace WebApiPadron
         }
 
         private IList _citizens;
+
+        /// <summary>
+        /// Obtiene una única instancia de la clase o la crea si no existe.
+        /// </summary>
         public static PadronFileReader GetIntance()
         {
             if (PadronFileReader._instance == null)
@@ -27,12 +31,19 @@ namespace WebApiPadron
             return PadronFileReader._instance;
         }
 
+        /// <summary>
+        /// Crea una nueva instancia de la clase.
+        /// </summary>
         private PadronFileReader(string filepath)
         {
             this.Filepath = filepath;
             this.readFileToList();
         }
 
+        /// <summary>
+        /// Obtiene una lista de ciudadanos a partir del arrchivo de texto del
+        /// padrón electoral completo.
+        /// </summary>
         private void readFileToList()
         {
             using (FileStream fs = File.Open(Filepath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
@@ -43,6 +54,10 @@ namespace WebApiPadron
             }
         }
 
+        /// <summary>
+        /// Asigna una lista de ciudadanos a la propiedad _citizens a partir de 
+        /// un StreamReader.
+        /// </summary>
         private void setCitizenList(StreamReader sr)
         {
             _citizens = new ArrayList();
@@ -53,7 +68,9 @@ namespace WebApiPadron
             }
         }
 
-
+        /// <summary>
+        /// Obtiene la lista de ciudadanos.
+        /// </summary>
         Citizen[] IPadronReader.getCitizens()
         {
             return _citizens.Cast<Citizen>().ToArray();

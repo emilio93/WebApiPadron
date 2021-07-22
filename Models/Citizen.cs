@@ -54,6 +54,9 @@ namespace WebApiPadron
             parseRegister(citizenRegister);
         }
 
+        /// <summary>
+        /// Parse a single citizen register from text to the object properties.
+        /// </summary>
         private void parseRegister(string citizenRegister)
         {
             string[] fields = citizenRegister.Split(',');

@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 
@@ -32,7 +32,7 @@ namespace WebApiPadron.Controllers
             return this._citizenLogic.getLongestNombres(1)[0];
         }
 
-        [HttpGet("name/leastCommon/{quantity}")]
+        [HttpGet("names/leastCommon/{quantity}")]
         public IEnumerable<string> GetLeastCommonNames(int quantity)
         {
             return _citizenLogic.getLeastCommonNombres(quantity);

@@ -29,21 +29,29 @@ namespace WebApiPadron
 
         private PadronFileReader(string filepath)
         {
-            Filepath = filepath;
-            _citizens = new ArrayList();
+            this.Filepath = filepath;
+            this.readFileToList();
+        }
 
+        private void readFileToList()
+        {
             using (FileStream fs = File.Open(Filepath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             using (BufferedStream bs = new BufferedStream(fs))
             using (StreamReader sr = new StreamReader(bs))
             {
-                string line;
-                while ((line = sr.ReadLine()) != null)
-                {
-                    _citizens.Add(new Citizen(line));
-                }
+                this.setCitizenList(sr);
             }
         }
 
+        private void setCitizenList(StreamReader sr)
+        {
+            _citizens = new ArrayList();
+            string line;
+            while ((line = sr.ReadLine()) != null)
+            {
+                _citizens.Add(new Citizen(line));
+            }
+        }
 
 
         Citizen[] IPadronReader.getCitizens()

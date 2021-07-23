@@ -32,8 +32,8 @@ namespace WebApiPadron
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApiPadron", Version = "v1" });
             });
-            services.AddSingleton<IPadronReader, PadronFileReader>();
-            services.AddScoped<ICitizenLogic, CitizenLogic>();
+            IPadronReader padronReader = new PadronFileReader();
+            services.AddScoped<ICitizenLogic>(s => new CitizenLogic(padronReader.getCitizens()));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

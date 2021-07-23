@@ -20,6 +20,14 @@ namespace WebApiPadron
         }
 
         /// <summary>
+        /// Constructs the CitizenLogic object.
+        /// </summary>
+        public CitizenLogic(ICitizen[] citizens)
+        {
+            this.Citizens = citizens;
+        }
+
+        /// <summary>
         /// Gets the n citizens with longest names.
         /// </summary>
         public string[] getLongestNombres(int quantity = 10)

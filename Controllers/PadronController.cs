@@ -18,11 +18,10 @@ namespace WebApiPadron.Controllers
         /// El constructor obtiene la lista de ciudadanos y crea un objeto para
         /// el manejo de la lógica de estos datos.
         /// </summary>
-        public PadronController(ILogger<PadronController> logger, IPadronReader padronFileReader, ICitizenLogic citizenLogic)
+        public PadronController(ILogger<PadronController> logger, ICitizenLogic citizenLogic)
         {
             _logger = logger;
             _citizenLogic = citizenLogic;
-            _citizenLogic.Citizens = padronFileReader.getCitizens();
         }
 
         /// <summary>

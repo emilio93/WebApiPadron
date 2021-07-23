@@ -7,8 +7,6 @@ namespace WebApiPadron
 
     public class PadronFileReader : IPadronReader
     {
-        private static string FILEPATH = @"padron-electoral\PADRON_COMPLETO.txt";
-
         private string _filepath;
         public string Filepath
         {
@@ -21,9 +19,9 @@ namespace WebApiPadron
         /// <summary>
         /// Crea una nueva instancia de la clase.
         /// </summary>
-        public PadronFileReader()
+        public PadronFileReader(string filepath)
         {
-            this.Filepath = FILEPATH;
+            this.Filepath = filepath;
             this.readFileToList();
         }
 

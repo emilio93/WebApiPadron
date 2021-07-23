@@ -16,6 +16,8 @@ namespace WebApiPadron
 {
     public class Startup
     {
+        private static string PADRON_FILEPATH = @"padron-electoral\PADRON_COMPLETO.txt";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -32,7 +34,7 @@ namespace WebApiPadron
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApiPadron", Version = "v1" });
             });
-            IPadronReader padronReader = new PadronFileReader();
+            IPadronReader padronReader = new PadronFileReader(PADRON_FILEPATH);
             services.AddScoped<ICitizenLogic>(s => new CitizenLogic(padronReader.getCitizens()));
         }
 
